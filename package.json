@@ -1,0 +1,34 @@
+{
+  "name": "@axolo/query2sequelize",
+  "version": "0.1.0",
+  "description": "parse query as sequelize",
+  "author": "Yueming Fang",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "query2sequelize",
+    "query to sequelize",
+    "query to sql",
+    "sequelize querystring"
+  ],
+  "homepage": "https://github.com/axolo/query2sequelize#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axolo/query2sequelize.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "rollup": "^4.28.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  }
+}
