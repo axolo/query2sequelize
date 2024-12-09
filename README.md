@@ -127,7 +127,7 @@ LIMIT 10, 20;
 
 |     params     |   type   |      default       |    description     |
 | -------------- | -------- | ------------------ | ------------------ |
-| `Sequelize`    | `Object` | `config.sequelize` | Sequelize instance |
+| `Sequelize`    | `Object` | `config.Sequelize` | Sequelize instance |
 | `offset`       | `Number` | `0`                | default offset     |
 | `limit`        | `Number` | `100`              | default limit      |
 | `reservedKeys` | `Array`  | `['access_token']` | disable where keys |
