@@ -1,6 +1,6 @@
 {
   "name": "@axolo/query2sequelize",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "parse query as sequelize",
   "author": "Yueming Fang",
   "license": "MIT",
@@ -20,8 +20,8 @@
     "url": "git+https://github.com/axolo/query2sequelize.git"
   },
   "scripts": {
-    "test": "jest",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "dependencies": {
     "sequelize": "^6.37.5"

@@ -1,11 +1,11 @@
-const formatQuery = require('../dist/index');
+const formatQuery = require('../src/index');
 const Sequelize = require('sequelize');
 
 describe('formatQuery function', () => {
   test('full', () => {
     const query = {
       price: '>99',
-      name: 'John,Doe',
+      name: 'Da,Fang',
       title: '%Sample%',
       access_token: 'secret',
       additionalField: 'value',
@@ -20,7 +20,7 @@ describe('formatQuery function', () => {
       include: ['users', 'orders'],
       where: {
         price: { [Sequelize.Op.gt]: '99' },
-        name: { [Sequelize.Op.in]: ['John', 'Doe'] },
+        name: { [Sequelize.Op.in]: ['Da', 'Fang'] },
         title: { [Sequelize.Op.like]: '%Sample%' },
         additionalField: 'value'
       },
@@ -29,7 +29,7 @@ describe('formatQuery function', () => {
         ['updatedAt', 'desc']
       ],
       offset: 0,
-      limit: 100
+      limit: 1000
     });
   });
 
