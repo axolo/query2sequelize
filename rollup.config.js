@@ -1,10 +1,9 @@
-const { uglify } = require('rollup-plugin-uglify')
+const terser = require('@rollup/plugin-terser')
 
 module.exports = {
   input: "src/index.js",
   output: {
     file: "dist/index.js",
-    format: "cjs",
-    plugins: [uglify()]
+    plugins: [terser()]
   }
 }
