@@ -7,6 +7,8 @@ describe('formatQuery function', () => {
       price: '>99',
       name: 'Da,Fang',
       title: '%Sample%',
+      birthDate: 'null',
+      gender: '!null',
       access_token: 'secret',
       additionalField: 'value',
       _include: 'users,orders',
@@ -22,6 +24,8 @@ describe('formatQuery function', () => {
         price: { [Sequelize.Op.gt]: '99' },
         name: { [Sequelize.Op.in]: ['Da', 'Fang'] },
         title: { [Sequelize.Op.like]: '%Sample%' },
+        birthDate: { [Sequelize.Op.is]: null },
+        gender: { [Sequelize.Op.not]: null },
         additionalField: 'value'
       },
       order: [
@@ -69,14 +73,18 @@ describe('formatQuery function', () => {
     const query = {
       price: '>99',
       date: '2023-01-01~2023-12-31',
-      status: '!active'
+      status: '!active',
+      birthDate: 'null',
+      gender: '!null',
     };
     const config = { Sequelize };
     const result = formatQuery(query, config);
     expect(result.where).toEqual({
       price: { [Sequelize.Op.gt]: '99' },
       date: { [Sequelize.Op.between]: ['2023-01-01', '2023-12-31'] },
-      status: { [Sequelize.Op.ne]: 'active' }
+      status: { [Sequelize.Op.ne]: 'active' },
+      birthDate: { [Sequelize.Op.is]: null },
+      gender: { [Sequelize.Op.not]: null },
     });
   });
 

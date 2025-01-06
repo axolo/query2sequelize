@@ -13,6 +13,7 @@ const Sequelize = require('sequelize');
  * ## 条件
  *
  * - =: 不包含转义符
+ * - !null: 非空，如：gender=!null
  * - >: 前缀大于号，如：price=>99
  * - <: 前缀小于号，如：price=<100
  * - !=: 前缀不等于，如：price=!99
@@ -64,6 +65,16 @@ module.exports = (query, config) => {
     // LIKE
     if (where[key].startsWith('%') || where[key].endsWith('%')) {
       where[key] = { [ Op.like ]: where[key] };
+      return;
+    }
+    // IS NOT NULL
+    if (where[key] === '!null') {
+      where[key] = { [Op.not]: null };
+      return;
+    }
+    // IS NULL
+    if (where[key] === 'null') {
+      where[key] = { [Op.is]: null };
       return;
     }
     // BETWEEN

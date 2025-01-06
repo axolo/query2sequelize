@@ -17,10 +17,12 @@ const result = query2sequelize({
   price: '>99',
   name: 'Da,Fang',
   title: '%Sample%',
+  birthDate: 'null',
+  gender: '!null',
   access_token: 'secret',
   additionalField: 'value',
   _include: 'users,orders',
-  _order: 'createdAt,!updatedAt',
+  _order: 'createdAt,!updatedAt'
   _offset: 10,
   _limit: 20
 })
@@ -36,6 +38,8 @@ const result = query2sequelize({
     price: { [Sequelize.Op.gt]: '99' },
     name: { [Sequelize.Op.in]: ['Da', 'Fang'] },
     title: { [Sequelize.Op.like]: '%Sample%' },
+    birthDate: { [Sequelize.Op.is]: null },
+    gender: { [Sequelize.Op.not]: null },
     additionalField: 'value'
   },
   order: [
@@ -72,17 +76,19 @@ LEFT OUTER JOIN newsTag ON newsTag.newsId = news.id;
 
 #### where
 
-| params |      sql      |           example            |         description          |
-| :----: | :-----------: | ---------------------------- | ---------------------------- |
-|        |      `=`      | `price=99`                   | price = 99                   |
-|  `>`   |      `>`      | `price=>99`                  | price > 99                   |
-|  `<`   |      `<`      | `price=<100`                 | price < 100                  |
-|  `!`   |     `!=`      | `price=!99`                  | price != 99                  |
-|  `!<`  |     `>=`      | `price=!<100`                | price >= 100                 |
-|  `!>`  |     `<=`      | `price=!>99`                 | price <= 100                 |
-|  `%`   |    `LIKE`     | `title=Hangzhou%`            | starts with 'Hangzhou'       |
-|  `,`   |     `IN`      | `name=zhangsan,lisi`         | name in ['zhangsan', 'lisi'] |
-|  `~`   | `BETWEEN AND` | `date=2023-07-01~2023-08-01` | date in july of 2023         |
+| params  |      sql      |           example            |         description          |
+| :-----: | :-----------: | ---------------------------- | ---------------------------- |
+|         |      `=`      | `price=99`                   | price = 99                   |
+|   `>`   |      `>`      | `price=>99`                  | price > 99                   |
+|   `<`   |      `<`      | `price=<100`                 | price < 100                  |
+|   `!`   |     `!=`      | `price=!99`                  | price != 99                  |
+|  `!<`   |     `>=`      | `price=!<100`                | price >= 100                 |
+|  `!>`   |     `<=`      | `price=!>99`                 | price <= 100                 |
+|   `%`   |    `LIKE`     | `title=Hangzhou%`            | starts with 'Hangzhou'       |
+|   `,`   |     `IN`      | `name=zhangsan,lisi`         | name in ['zhangsan', 'lisi'] |
+|   `~`   | `BETWEEN AND` | `date=2023-07-01~2023-08-01` | date in july of 2023         |
+| `!null` | `IS NOT NULL` | `gender=!null`               | gender is not null           |
+| `null`  |  `IS  NULL`   | `gender=null`                | gender is  null              |
 
 > news of October 2024
 
