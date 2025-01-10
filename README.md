@@ -19,6 +19,7 @@ const result = query2sequelize({
   title: '%Sample%',
   birthDate: 'null',
   gender: '!null',
+  'role.name': 'admin',
   access_token: 'secret',
   additionalField: 'value',
   _include: 'users,orders',
@@ -40,6 +41,7 @@ const result = query2sequelize({
     title: { [Sequelize.Op.like]: '%Sample%' },
     birthDate: { [Sequelize.Op.is]: null },
     gender: { [Sequelize.Op.not]: null },
+    '$role.name$': 'admin',
     additionalField: 'value'
   },
   order: [

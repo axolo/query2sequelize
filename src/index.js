@@ -53,15 +53,16 @@ module.exports = (query, config) => {
     '_order',
     ...config.reservedKeys
   ];
-  const { Op } = config.Sequelize;
+  const { Op, col } = config.Sequelize;
 
   // 条件
   const where = {};
   const whereKeys = Object.keys(query).filter(k => !reservedKeys.includes(k));
-  whereKeys.forEach(key => {
+  whereKeys.forEach(k => {
     // 先从query中删除，再处理
-    where[key] = query[key];
-    delete query[key];
+    const key = k.includes('.') ? `$${k}$` : k
+    where[key] = query[k];
+    delete query[k];
     // LIKE
     if (where[key].startsWith('%') || where[key].endsWith('%')) {
       where[key] = { [ Op.like ]: where[key] };

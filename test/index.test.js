@@ -9,6 +9,7 @@ describe('formatQuery function', () => {
       title: '%Sample%',
       birthDate: 'null',
       gender: '!null',
+      'role.name': 'admin',
       access_token: 'secret',
       additionalField: 'value',
       _include: 'users,orders',
@@ -26,6 +27,7 @@ describe('formatQuery function', () => {
         title: { [Sequelize.Op.like]: '%Sample%' },
         birthDate: { [Sequelize.Op.is]: null },
         gender: { [Sequelize.Op.not]: null },
+        '$role.name$': 'admin',
         additionalField: 'value'
       },
       order: [
@@ -76,6 +78,7 @@ describe('formatQuery function', () => {
       status: '!active',
       birthDate: 'null',
       gender: '!null',
+      'role.name': 'admin',
     };
     const config = { Sequelize };
     const result = formatQuery(query, config);
@@ -85,6 +88,7 @@ describe('formatQuery function', () => {
       status: { [Sequelize.Op.ne]: 'active' },
       birthDate: { [Sequelize.Op.is]: null },
       gender: { [Sequelize.Op.not]: null },
+      '$role.name$': 'admin',
     });
   });
 
