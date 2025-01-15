@@ -44,6 +44,7 @@ module.exports = (query, config) => {
     offset: 0,
     limit: 1000,
     reservedKeys: [ 'access_token' ],
+    keepEmpty: false,
     ...config
   };
   const reservedKeys = [
@@ -53,13 +54,18 @@ module.exports = (query, config) => {
     '_order',
     ...config.reservedKeys
   ];
-  const { Op, col } = config.Sequelize;
+  const { Op } = config.Sequelize;
 
   // 条件
   const where = {};
   const whereKeys = Object.keys(query).filter(k => !reservedKeys.includes(k));
   whereKeys.forEach(k => {
-    // 先从query中删除，再处理
+    // 若配置空字符串不处理
+    if (!config.keepEmpty && [''].includes(query[k])) {
+      delete query[k];
+      return;
+    }
+    // 处理并从删除query
     const key = k.includes('.') ? `$${k}$` : k
     where[key] = query[k];
     delete query[k];

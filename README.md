@@ -14,6 +14,7 @@ npm i @axolo/query2sequelize
 const query2sequelize = require('@axolo/query2sequelize')
 
 const result = query2sequelize({
+  name: '', // config.keepEmpty = false
   price: '>99',
   name: 'Da,Fang',
   title: '%Sample%',
@@ -133,12 +134,13 @@ LIMIT 10, 20;
 
 ### config
 
-|     params     |   type   |      default       |         description         |
-| -------------- | -------- | ------------------ | --------------------------- |
-| `Sequelize`    | `Object` | `config.Sequelize` | Sequelize instance          |
-| `offset`       | `Number` | `0`                | default offset              |
-| `limit`        | `Number` | `1000`             | default limit               |
-| `reservedKeys` | `Array`  | `['access_token']` | keys not be parsed to where |
+|     params     |   type    |      default       |              description              |
+| -------------- | --------- | ------------------ | ------------------------------------- |
+| `Sequelize`    | `Object`  | `config.Sequelize` | Sequelize instance                    |
+| `offset`       | `Number`  | `0`                | default offset                        |
+| `limit`        | `Number`  | `1000`             | default limit                         |
+| `reservedKeys` | `Array`   | `['access_token']` | keys not be parsed to where           |
+| `keepEmpty`    | `Boolean` | `false`            | keep empty string query, like `name=` |
 
 > Yueming Fang
 > 2024-12-05

@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 describe('formatQuery function', () => {
   test('full', () => {
     const query = {
+      name: '',
       price: '>99',
       name: 'Da,Fang',
       title: '%Sample%',
